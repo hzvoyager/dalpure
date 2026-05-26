@@ -1,0 +1,264 @@
+/*
+    DAL PURE - Custom Premium Lookbook Style
+    Minimalist, Clean & Resortwear Vibe
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+/*---------------------------------------
+  General & Background              
+-----------------------------------------*/
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+    background-color: #fcfbfa; /* Kum / Kırık beyaz tonu - Dal Pure'un saf hissi */
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    color: #2b2b2b; /* Yumuşak antrasit */
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #575757;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  text-decoration: none !important;
+}
+
+a:hover, a:active, a:focus {
+  color: #000000;
+  outline: none;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*---------------------------------------
+  Typography (Lüks ve Sade)             
+-----------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  font-style: normal;
+  font-weight: 400;
+  color: #2b2b2b;
+}
+
+h1 {
+  font-size: 38px;
+  font-weight: 300;
+  letter-spacing: 0.25em; /* Marka ismine geniş ve asil duruş */
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 28px;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+h3 {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #888888;
+}
+
+h4 {
+  font-size: 18px;
+  letter-spacing: 0.05em;
+}
+
+p {
+  color: #666666;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+.section-title {
+  margin: 0;
+  padding-bottom: 40px;
+}
+
+.parallax-section {
+  background-attachment: fixed !important;
+  background-size: cover !important;
+}
+
+#about, #work, #contact, footer {
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+/*---------------------------------------
+  Pre-loader (Yükleme Ekranı)              
+-----------------------------------------*/
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background: #fcfbfa;
+}
+
+.spinner {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  position: relative;
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  border-top-color: #2b2b2b;
+  animation: spinner .9s linear infinite;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+/*---------------------------------------
+  Home Section (Karşılama / Hero)              
+-----------------------------------------*/
+#home {
+  /* Arkaplan fotoğrafının adı, images klasöründe home-bg.jpg olmalı */
+  background: url('../images/home-bg.webp') center center no-repeat fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  height: 85vh;
+  text-align: center;
+  position: relative;
+  margin: 20px 20px 0 20px;
+  border-radius: 2px;
+}
+
+.home-wrapper {
+  background: rgba(252, 251, 250, 0.85); /* Hafif buzlu, çok şık arka plan */
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+.arrow-btn i {
+  color: #2b2b2b;
+  font-size: 24px;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.arrow-btn i:hover {
+  color: #888;
+  transform: translateY(5px);
+}
+
+/*---------------------------------------
+  About & Fabric Section              
+-----------------------------------------*/
+#about {
+  padding-top: 100px;
+}
+
+#about img {
+  border-radius: 2px;
+  margin-bottom: 28px;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.05); /* Fotoğrafa çok hafif lüks gölge */
+}
+
+.about-thumb {
+  padding: 20px 30px;
+}
+
+/*---------------------------------------
+  Footer Section              
+-----------------------------------------*/
+footer {
+  background: #fcfbfa;
+  border-top: 1px solid #eaeaea;
+}
+
+footer h4 {
+  color: #2b2b2b;
+  font-weight: 500;
+}
+
+.dash-line {
+  border-top: 1px solid #eaeaea;
+}
+
+.copyright-text {
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/*---------------------------------------
+  Social Icons (Minimalist)             
+-----------------------------------------*/
+.social-icon {
+  padding: 0;
+  margin: 0;
+}
+
+.social-icon li {
+  display: inline-block;
+  list-style: none;
+}
+
+.social-icon li a {
+  color: #2b2b2b;
+  font-size: 18px;
+  margin: 0px 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-icon li a:hover {
+  color: #888;
+}
+
+/*---------------------------------------
+  Mobile Responsive Styles              
+-----------------------------------------*/
+@media (max-width: 768px) {
+  h1 { font-size: 28px; letter-spacing: 0.15em; }
+  h2 { font-size: 22px; }
+  #home { margin: 10px; height: 75vh; }
+  .home-wrapper { padding: 30px 15px; }
+  #about .about-thumb { padding: 0px; margin-top: 20px; }
+  footer .text-left, footer .text-right { text-align: center !important; margin-bottom: 15px; }
+}
+.home-desc {
+    font-size: 14px; /* Fontu ideal bir alt başlık boyutuna düşürdük */
+    color: #666666; /* Logodan biraz daha soluk bir gri yaparak hiyerarşi kurduk */
+    margin-top: 20px; /* DAL PURE logosu ile arasına şık bir boşluk verdik */
+    text-transform: none; /* Bütün harfleri büyük yapma zorunluluğunu kaldırdık */
+    letter-spacing: 0.05em; /* Çok hafif, elit bir harf arası boşluk */
+    font-weight: 300; /* İnce ve elegant durması için weight'i düşürdük */
+}
