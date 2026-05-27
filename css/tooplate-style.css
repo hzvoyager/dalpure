@@ -149,7 +149,7 @@ p {
 -----------------------------------------*/
 #home {
   /* Arkaplan fotoğrafının adı, images klasöründe home-bg.jpg olmalı */
-  background: url('../images/home-bg.webp') center center no-repeat scroll;
+  background: url('../images/home-bg.webp') center center no-repeat fixed;
   background-size: cover;
   display: flex;
   align-items: center;
