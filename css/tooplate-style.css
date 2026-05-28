@@ -6,6 +6,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
 
 /*---------------------------------------
+  Değişkenler (Tek Noktadan Kontrol)              
+-----------------------------------------*/
+:root {
+  --primary-color: #2b2b2b;
+  --text-muted: #888888;
+  --bg-light: #fcfbfa;
+  --transition-speed: 0.3s;
+  --font-serif: 'Georgia', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+/*---------------------------------------
   General & Background              
 -----------------------------------------*/
 html, body {
@@ -14,19 +26,19 @@ html, body {
 }
 
 body {
-    background-color: #fcfbfa; /* Kum / Kırık beyaz tonu - Dal Pure'un saf hissi */
-    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-light); /* Dal Pure'un saf hissi */
+    font-family: var(--font-sans);
     font-style: normal;
     font-weight: 300;
-    color: #2b2b2b; /* Yumuşak antrasit */
+    color: var(--primary-color);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
 a {
   color: #575757;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  -webkit-transition: var(--transition-speed);
+  transition: var(--transition-speed);
   text-decoration: none !important;
 }
 
@@ -46,13 +58,13 @@ a:hover, a:active, a:focus {
 h1, h2, h3, h4, h5, h6 {
   font-style: normal;
   font-weight: 400;
-  color: #2b2b2b;
+  color: var(--primary-color);
 }
 
 h1 {
   font-size: 38px;
   font-weight: 300;
-  letter-spacing: 0.25em; /* Marka ismine geniş ve asil duruş */
+  letter-spacing: 0.25em; 
   text-transform: uppercase;
   margin-bottom: 10px;
 }
@@ -69,7 +81,7 @@ h3 {
   line-height: 24px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #888888;
+  color: var(--text-muted);
 }
 
 h4 {
@@ -90,6 +102,23 @@ p {
   padding-bottom: 40px;
 }
 
+/* --- Marka Logoları (Georgia Font Atamaları) --- */
+.brand-logo-main {
+  font-family: var(--font-serif);
+  letter-spacing: 0.2em;
+  text-transform: none;
+}
+.brand-logo-footer {
+  font-family: var(--font-serif);
+  letter-spacing: 2px;
+  font-size: 18px; 
+  text-transform: none; 
+  color: var(--primary-color); 
+}
+
+/*---------------------------------------
+  Layout & Structure
+-----------------------------------------*/
 .parallax-section {
   background-attachment: fixed !important;
   background-size: cover !important;
@@ -100,6 +129,31 @@ p {
   padding-top: 80px;
   padding-bottom: 80px;
 }
+
+/*---------------------------------------
+  About Bölümü Kusursuz Hizalama Sabitleyici
+-----------------------------------------*/
+.align-center {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+}
+
+/* Bootstrap'in flexbox yapısını bozan gizli temizlik elemanlarını iptal eder */
+.align-center::before, .align-center::after {
+  display: none !important;
+}
+
+/* Resim ve yazı bloğunun tepe noktalarını milimetrik olarak eşitler */
+.about-thumb, .about-thumb .section-title, .about-thumb h2, .about-thumb h3 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.about-thumb, .about-thumb .section-title, .about-thumb h2, .about-thumb h3 {
+  margin-top: 0;
+  padding-top: 0;
+} 
 
 /*---------------------------------------
   Pre-loader (Yükleme Ekranı)              
@@ -115,7 +169,7 @@ p {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  background: #fcfbfa;
+  background: var(--bg-light);
 }
 
 .spinner {
@@ -136,7 +190,7 @@ p {
   margin-left: -25px;
   border-radius: 50%;
   border: 1px solid #e0e0e0;
-  border-top-color: #2b2b2b;
+  border-top-color: var(--primary-color);
   animation: spinner .9s linear infinite;
 }
 
@@ -145,10 +199,26 @@ p {
 }
 
 /*---------------------------------------
+  Dil Seçici (Language Switcher)
+-----------------------------------------*/
+.lang-switcher {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  z-index: 1000;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+.lang-switcher .active { color: var(--primary-color); font-weight: 500; }
+.lang-switcher .separator { color: var(--text-muted); margin: 0 5px; }
+.lang-switcher a { color: var(--text-muted); text-decoration: none; transition: var(--transition-speed); }
+.lang-switcher a:hover { color: var(--primary-color); }
+
+/*---------------------------------------
   Home Section (Karşılama / Hero)              
 -----------------------------------------*/
 #home {
-  /* Arkaplan fotoğrafının adı, images klasöründe home-bg.jpg olmalı */
   background: url('../images/home-bg.webp') center center no-repeat fixed;
   background-size: cover;
   display: flex;
@@ -161,22 +231,31 @@ p {
 }
 
 .home-wrapper {
-  background: rgba(252, 251, 250, 0.85); /* Hafif buzlu, çok şık arka plan */
+  background: rgba(252, 251, 250, 0.85); 
   padding: 40px 20px;
   max-width: 600px;
   margin: 0 auto;
   border-radius: 2px;
 }
 
+.home-desc {
+  font-size: 14px; 
+  color: #666666; 
+  margin-top: 20px; 
+  text-transform: none; 
+  letter-spacing: 0.05em; 
+  font-weight: 300; 
+}
+
 .arrow-btn i {
-  color: #2b2b2b;
+  color: var(--primary-color);
   font-size: 24px;
   margin-top: 20px;
-  transition: 0.3s;
+  transition: var(--transition-speed);
 }
 
 .arrow-btn i:hover {
-  color: #888;
+  color: var(--text-muted);
   transform: translateY(5px);
 }
 
@@ -190,7 +269,7 @@ p {
 #about img {
   border-radius: 2px;
   margin-bottom: 28px;
-  box-shadow: 0px 10px 30px rgba(0,0,0,0.05); /* Fotoğrafa çok hafif lüks gölge */
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.05);
 }
 
 .about-thumb {
@@ -198,16 +277,63 @@ p {
 }
 
 /*---------------------------------------
+  Carousel & Ürün Kartları              
+-----------------------------------------*/
+.carousel-control.left, .carousel-control.right {
+  background-image: none;
+  color: var(--primary-color);
+  opacity: 0.5;
+}
+
+.carousel-control:hover { opacity: 1; }
+
+.carousel-inner > .item > img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.product-title { 
+  margin-top: 20px; 
+  font-weight: bold; 
+  letter-spacing: 1px; 
+  font-size: 18px; 
+  text-transform: none; 
+  color: var(--primary-color); 
+}
+
+.product-desc { 
+  color: var(--text-muted); 
+  font-size: 14px; 
+  margin-bottom: 15px; 
+}
+
+/* --- Genel Buton Stili --- */
+.btn-outline-dark-custom {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  transition: var(--transition-speed);
+}
+
+.btn-outline-dark-custom:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+}
+
+/*---------------------------------------
   Footer Section              
 -----------------------------------------*/
 footer {
-  background: #fcfbfa;
+  background: var(--bg-light);
   border-top: 1px solid #eaeaea;
-}
-
-footer h4 {
-  color: #2b2b2b;
-  font-weight: 500;
 }
 
 .dash-line {
@@ -215,13 +341,10 @@ footer h4 {
 }
 
 .copyright-text {
-  color: #888;
+  color: var(--text-muted);
   letter-spacing: 1px;
 }
 
-/*---------------------------------------
-  Social Icons (Minimalist)             
------------------------------------------*/
 .social-icon {
   padding: 0;
   margin: 0;
@@ -233,14 +356,14 @@ footer h4 {
 }
 
 .social-icon li a {
-  color: #2b2b2b;
+  color: var(--primary-color);
   font-size: 18px;
   margin: 0px 10px;
-  transition: all 0.3s ease-in-out;
+  transition: all var(--transition-speed) ease-in-out;
 }
 
 .social-icon li a:hover {
-  color: #888;
+  color: var(--text-muted);
 }
 
 /*---------------------------------------
@@ -254,17 +377,15 @@ footer h4 {
   #about .about-thumb { padding: 0px; margin-top: 20px; }
   footer .text-left, footer .text-right { text-align: center !important; margin-bottom: 15px; }
   
-  /* Mobilde arka plan zoom (parallax) hatasını çözen kısım */
+  /* Mobilde arka plan zoom (parallax) hatasını çözer */
   .parallax-section, #home {
     background-attachment: scroll !important;
     background-position: center center !important;
   }
-}
-.home-desc {
-    font-size: 14px; /* Fontu ideal bir alt başlık boyutuna düşürdük */
-    color: #666666; /* Logodan biraz daha soluk bir gri yaparak hiyerarşi kurduk */
-    margin-top: 20px; /* DAL PURE logosu ile arasına şık bir boşluk verdik */
-    text-transform: none; /* Bütün harfleri büyük yapma zorunluluğunu kaldırdık */
-    letter-spacing: 0.05em; /* Çok hafif, elit bir harf arası boşluk */
-    font-weight: 300; /* İnce ve elegant durması için weight'i düşürdük */
+
+  /* Mobilde carousel fotoğraflarının odak noktasını üste alıp kafa kesilmesini önler */
+  .carousel-inner > .item > img {
+    height: 400px !important;
+    object-position: top center !important;
+  }
 }
