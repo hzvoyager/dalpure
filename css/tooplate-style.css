@@ -253,6 +253,12 @@ footer h4 {
   .home-wrapper { padding: 30px 15px; }
   #about .about-thumb { padding: 0px; margin-top: 20px; }
   footer .text-left, footer .text-right { text-align: center !important; margin-bottom: 15px; }
+  
+  /* Mobilde arka plan zoom (parallax) hatasını çözen kısım */
+  .parallax-section, #home {
+    background-attachment: scroll !important;
+    background-position: center center !important;
+  }
 }
 .home-desc {
     font-size: 14px; /* Fontu ideal bir alt başlık boyutuna düşürdük */
