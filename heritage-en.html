@@ -1,77 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Dal Pure | Our Heritage</title>
+  <meta charset="UTF-8">
+  <title>Dal Pure | Our Heritage</title>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="description" content="The centuries-old history of Buldan weaving and Dal Pure's natural production philosophy.">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="The centuries-old history of Buldan weaving and Dal Pure's natural production philosophy.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/tooplate-style.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
 
-    <style>
-         .heritage-content p { font-size: 16px; line-height: 1.8; color: #555; margin-bottom: 20px; }
-         .heritage-title { font-weight: bold; letter-spacing: 2px; margin-bottom: 10px; }
-         .back-btn { 
-              display: inline-block; padding: 10px 20px; border: 1px solid #2b2b2b;
-              color: #2b2b2b; text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
-              font-size: 12px; transition: 0.3s; margin-top: 40px;
-         }
-         .back-btn:hover { background-color: #2b2b2b; color: #fff; text-decoration: none; }
-         .heritage-image { width: 100%; height: 500px; object-fit: cover; margin-bottom: 40px; border-radius: 4px; }
-         
-         /* MOBİL İÇİN İNCE AYAR */
-         @media (max-width: 767px) {
-              .heritage-image { height: 250px; margin-bottom: 25px; }
-              .back-btn { margin-top: 20px; }
-              .heritage-content p { font-size: 15px; }
-         }
-    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET & BASE (Same as Home) ─────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         rgb(248, 245, 236);
+      --fg:         #1a1a18;
+      --muted:      #7a7870;
+      --accent:     #8a7d6b;
+      --border:     #e8e5e0;
+      --secondary:  rgb(243, 239, 230);
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+      --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── REVEAL ANIMATION ────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal[data-delay="80"]  { transition-delay: 80ms; }
+    .reveal[data-delay="160"] { transition-delay: 160ms; }
+    .reveal[data-delay="240"] { transition-delay: 240ms; }
+
+    /* ─── HERITAGE PAGE LAYOUT ────────────────────────────────── */
+    .heritage-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--fg);
+      border: 1px solid var(--fg);
+      padding: 12px 28px;
+      transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+      margin-bottom: 56px;
+    }
+    .back-btn:hover {
+      background-color: var(--fg);
+      color: var(--bg);
+    }
+    .back-btn svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .back-btn:hover svg {
+      transform: translateX(-4px);
+    }
+
+    .heritage-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .heritage-eyebrow {
+      font-family: var(--sans);
+      font-size: 10.5px;
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .heritage-title {
+      font-family: var(--serif);
+      font-size: clamp(34px, 6vw, 48px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--fg);
+    }
+
+    .heritage-image {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      margin-bottom: 48px;
+      background: var(--border); /* Placeholder background */
+    }
+
+    .heritage-content p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      text-align: justify;
+      text-align-last: center; /* Centers the last line for elegance */
+    }
+    .heritage-content strong {
+      font-weight: 400;
+      color: var(--fg);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .heritage-wrapper { padding: 40px 24px; }
+      .back-btn { margin-bottom: 40px; }
+      .heritage-image { height: 280px; margin-bottom: 32px; }
+      .heritage-header { margin-bottom: 32px; }
+      .heritage-content p { text-align: left; text-align-last: left; }
+    }
+  </style>
 </head>
 
-<body style="background-color: #fcfcfc;">
+<body>
 
-<div class="container">
-     <div class="row">
-          <div class="col-md-12 text-center">
-               <a href="en.html" class="back-btn"><i class="fa fa-angle-left"></i> Back to Home</a>
-          </div>
-     </div>
-</div>
+  <main class="heritage-wrapper">
+    <a href="en.html" class="back-btn reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Back to Home
+    </a>
 
-<section style="padding: 60px 0;">
-     <div class="container">
-          <div class="row">
-               <div class="col-md-offset-2 col-md-8 col-sm-12 heritage-content text-center">
-                    
-                    <div class="wow fadeInUp" data-wow-delay="0.2s">
-                         <h2 class="heritage-title">A CENTURIES OLD HERITAGE: BULDAN</h2>
-                         <p style="color: #888; letter-spacing: 1px; text-transform: uppercase; font-size: 13px;">A Natural Touch From Ottoman Palaces To The Present</p>
-                    </div>
+    <header class="heritage-header reveal" data-delay="80">
+      <p class="heritage-eyebrow">From Ottoman palaces to the present.</p>
+      <h1 class="heritage-title">A Centuries-Old Heritage: Buldan</h1>
+    </header>
 
-                    <div class="wow fadeInUp" data-wow-delay="0.4s" style="margin-top: 40px;">
-                         <img src="images/dokuma tezgahı.webp" class="heritage-image" alt="Traditional Buldan Weaving Loom">
-                         
-                         <p>Buldan fabric is not just a textile; it is a deep rooted cultural heritage passed down through generations since ancient times, blending hand craftsmanship and naturalness. With its labor intensive nature and centuries old history, this craft has been produced uninterrupted since the 14th century and holds a very special place today under UNESCO's intangible cultural heritage criteria. Renowned for its unique texture and quality, this fabric was used in sultan robes and palace garments during the Ottoman Empire, preserving its naturalness and prestige for centuries.</p>
+    <div class="reveal" data-delay="160">
+      <img src="images/dokuma tezgahı.webp" class="heritage-image" alt="Traditional Buldan Weaving Loom">
+    </div>
 
-                         <p>The biggest secret behind this unique weave is that no synthetic materials are used in its production, and its fibers are made entirely of pure cotton. Every thread woven on traditional handlooms gives the fabric its breathable, sweat free, and non restrictive structure. Thanks to the perfect balance of warp and weft, the natural pores in the fiber structure allow your skin to breathe. Unlike industrial fabrics, it does not stiffen when washed; instead, it softens over time, maintaining its skin friendly, flowing form for years.</p>
+    <article class="heritage-content">
+      <p class="reveal" data-delay="240">
+        Buldan fabric is not just a textile; it is a deep rooted cultural heritage passed down through generations since ancient times, blending hand craftsmanship and naturalness. With its labor intensive nature and centuries old history, this craft has been produced uninterrupted since the 14th century and holds a very special place today under UNESCO's intangible cultural heritage criteria. Renowned for its unique texture and quality, this fabric was used in sultan robes and palace garments during the Ottoman Empire, preserving its naturalness and prestige for centuries.
+      </p>
 
-                         <p>As <strong>dal pure</strong>, we reinterpret this centuries old heritage with today’s simple, comfortable, and intimate style. From shirts, pants, and kimonos designed for men and women, to bags and peshtemals that complement beach culture, this selection is crafted to bring that unique freshness to your skin whenever the sun shines. More than just clothing, we want to bring the honest and pure story of centuries into your daily life in its simplest form.</p>
-                    </div>
+      <p class="reveal" data-delay="240">
+        The biggest secret behind this unique weave is that no synthetic materials are used in its production, and its fibers are made entirely of pure cotton. Every thread woven on traditional handlooms gives the fabric its breathable, sweat free, and non restrictive structure. Thanks to the perfect balance of warp and weft, the natural pores in the fiber structure allow your skin to breathe. Unlike industrial fabrics, it does not stiffen when washed; instead, it softens over time, maintaining its skin friendly, flowing form for years.
+      </p>
 
-               </div>
-          </div>
-     </div>
-</section>
+      <p class="reveal" data-delay="240">
+        As <strong>dal pure</strong>, we reinterpret this centuries old heritage with today’s simple, comfortable, and intimate style. From shirts, pants, and kimonos designed for men and women, to bags and peshtemals that complement beach culture, this selection is crafted to bring that unique freshness to your skin whenever the sun shines. More than just clothing, we want to bring the honest and pure story of centuries into your daily life in its simplest form.
+      </p>
+    </article>
+  </main>
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/wow.min.js"></script>
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+  </script>
 
 </body>
 </html>

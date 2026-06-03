@@ -1,78 +1,195 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Dal Pure | Dokuma Mirasımız</title>
+  <meta charset="UTF-8">
+  <title>Dal Pure | Dokuma Mirasımız</title>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="description" content="Buldan dokumasının yüzyıllık tarihi ve Dal Pure'un doğal üretim felsefesi.">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="Buldan dokumasının yüzyıllık tarihi ve Dal Pure'un doğal üretim felsefesi.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/tooplate-style.css">
+  <link rel="icon" type="image/png" href="images/favicon.png">
 
-    <style>
-         .heritage-content p { font-size: 16px; line-height: 1.8; color: #555; margin-bottom: 20px; }
-         .heritage-title { font-weight: bold; letter-spacing: 2px; margin-bottom: 10px; }
-         .back-btn { 
-              display: inline-block; padding: 10px 20px; border: 1px solid #2b2b2b;
-              color: #2b2b2b; text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
-              font-size: 12px; transition: 0.3s; margin-top: 40px;
-         }
-         .back-btn:hover { background-color: #2b2b2b; color: #fff; text-decoration: none; }
-         .heritage-image { width: 100%; height: 500px; object-fit: cover; margin-bottom: 40px; border-radius: 4px; }
-         
-         /* MOBİL İÇİN İNCE AYAR */
-         @media (max-width: 767px) {
-              /* Resim telefonda dev gibi durmasın diye boyunu kısaltıyoruz */
-              .heritage-image { height: 250px; margin-bottom: 25px; }
-              .back-btn { margin-top: 20px; }
-              .heritage-content p { font-size: 15px; }
-         }
-    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;1,9..40,300&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET & BASE (Ana Sayfa ile Aynı) ───────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         rgb(248, 245, 236);
+      --fg:         #1a1a18;
+      --muted:      #7a7870;
+      --accent:     #8a7d6b;
+      --border:     #e8e5e0;
+      --secondary:  rgb(243, 239, 230);
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'DM Sans', system-ui, sans-serif;
+      --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── REVEAL ANIMATION (Ana Sayfa ile Aynı) ───────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal[data-delay="80"]  { transition-delay: 80ms; }
+    .reveal[data-delay="160"] { transition-delay: 160ms; }
+    .reveal[data-delay="240"] { transition-delay: 240ms; }
+
+    /* ─── HERITAGE SAYFA TASARIMI ─────────────────────────────── */
+    .heritage-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--fg);
+      border: 1px solid var(--fg);
+      padding: 12px 28px;
+      transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+      margin-bottom: 56px;
+    }
+    .back-btn:hover {
+      background-color: var(--fg);
+      color: var(--bg);
+    }
+    .back-btn svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.4s var(--ease-out);
+    }
+    .back-btn:hover svg {
+      transform: translateX(-4px);
+    }
+
+    .heritage-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .heritage-eyebrow {
+      font-family: var(--sans);
+      font-size: 10.5px;
+      font-weight: 300;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .heritage-title {
+      font-family: var(--serif);
+      font-size: clamp(34px, 6vw, 48px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--fg);
+    }
+
+    .heritage-image {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      margin-bottom: 48px;
+      background: var(--border); /* Resim yüklenene kadar estetik durur */
+    }
+
+    .heritage-content p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      text-align: justify;
+      text-align-last: center; /* Paragraf sonları ortalanır, şık durur */
+    }
+    .heritage-content strong {
+      font-weight: 400;
+      color: var(--fg);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .heritage-wrapper { padding: 40px 24px; }
+      .back-btn { margin-bottom: 40px; }
+      .heritage-image { height: 280px; margin-bottom: 32px; }
+      .heritage-header { margin-bottom: 32px; }
+      .heritage-content p { text-align: left; text-align-last: left; }
+    }
+  </style>
 </head>
 
-<body style="background-color: #fcfcfc;">
+<body>
 
-<div class="container">
-     <div class="row">
-          <div class="col-md-12 text-center">
-               <a href="index.html" class="back-btn"><i class="fa fa-angle-left"></i> Ana Sayfaya Dön</a>
-          </div>
-     </div>
-</div>
+  <main class="heritage-wrapper">
+    <a href="index.html" class="back-btn reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Ana Sayfaya Dön
+    </a>
 
-<section style="padding: 60px 0;">
-     <div class="container">
-          <div class="row">
-               <div class="col-md-offset-2 col-md-8 col-sm-12 heritage-content text-center">
-                    
-                    <div class="wow fadeInUp" data-wow-delay="0.2s">
-                         <h2 class="heritage-title">ASIRLIK BİR MİRAS: BULDAN</h2>
-                         <p style="color: #888; letter-spacing: 1px; text-transform: uppercase; font-size: 13px;">Osmanlı Saraylarından Günümüze Doğal Bir Dokunuş</p>
-                    </div>
+    <header class="heritage-header reveal" data-delay="80">
+      <p class="heritage-eyebrow">Osmanlı Saraylarından Günümüze</p>
+      <h1 class="heritage-title">Asırlık Bir Miras: Buldan</h1>
+    </header>
 
-                    <div class="wow fadeInUp" data-wow-delay="0.4s" style="margin-top: 40px;">
-                         <img src="images/dokuma tezgahı.webp" class="heritage-image" alt="Buldan Dokuma Tezgahı">
-                         
-                         <p>Buldan bezi, yalnızca bir kumaş değil; antik çağlardan beri nesilden nesile aktarılan, el emeği ve doğallığın harmanlandığı köklü bir kültürel mirastır. 14. yüzyıldan itibaren üretimi kesintisiz devam eden bu zanaat, el emeği yoğunluğu ve asırlık geçmişiyle bugün UNESCO’nun somut olmayan kültürel miras ölçütleri kapsamında değerlendirilen çok özel bir yere sahiptir. Eşsiz dokusu ve kalitesiyle Osmanlı İmparatorluğu döneminde padişah kaftanlarında ve saray giysilerinde kullanılan bu kumaş, yüzyıllardır doğallığını ve saygınlığını koruyor.</p>
+    <div class="reveal" data-delay="160">
+      <img src="images/dokuma tezgahı.webp" class="heritage-image" alt="Buldan Dokuma Tezgahı">
+    </div>
 
-                         <p>Bu özel dokunun en büyük sırrı, üretim sürecinde hiçbir sentetik materyale yer verilmemesi ve liflerinin tamamen saf pamuktan oluşmasıdır. Geleneksel kara tezgâhlarda atılan her ilmek, kumaşa nefes alan, terletmeyen ve bedeni sıkmayan o özgür yapıyı kazandırır. Çözgü ve atkı dengesi sayesinde lif yapısındaki gözenekler cildinizin hava almasını sağlar. Üstelik endüstriyel kumaşların aksine, yıkandıkça sertleşmez; zaman geçtikçe daha da yumuşar ve teninizle barışık, dökümlü halini yıllarca korur.</p>
+    <article class="heritage-content">
+      <p class="reveal" data-delay="240">
+        Buldan bezi, yalnızca bir kumaş değil; antik çağlardan beri nesilden nesile aktarılan, el emeği ve doğallığın harmanlandığı köklü bir kültürel mirastır. 14. yüzyıldan itibaren üretimi kesintisiz devam eden bu zanaat, el emeği yoğunluğu ve asırlık geçmişiyle bugün UNESCO’nun somut olmayan kültürel miras ölçütleri kapsamında değerlendirilen çok özel bir yere sahiptir. Eşsiz dokusu ve kalitesiyle Osmanlı İmparatorluğu döneminde padişah kaftanlarında ve saray giysilerinde kullanılan bu kumaş, yüzyıllardır doğallığını ve saygınlığını koruyor.
+      </p>
 
-                         <p><strong>dal pure</strong> olarak, bu asırlık mirası günümüzün yalın, rahat ve samimi tarzıyla yeniden yorumluyoruz. Erkek ve kadın için tasarladığımız gömlek, pantolon ve kimonolardan, plaj kültürünü tamamlayan çanta ve peştemallere kadar uzanan bu seçki, güneşin olduğu her an cildinize o eşsiz ferahlığı sunmak için hazırlandı. Yalnızca bir kıyafet değil; yüzyılların dürüst ve temiz hikayesini en sade haliyle günlük hayatınıza taşımak istiyoruz.</p>
-                    </div>
+      <p class="reveal" data-delay="240">
+        Bu özel dokunun en büyük sırrı, üretim sürecinde hiçbir sentetik materyale yer verilmemesi ve liflerinin tamamen saf pamuktan oluşmasıdır. Geleneksel kara tezgâhlarda atılan her ilmek, kumaşa nefes alan, terletmeyen ve bedeni sıkmayan o özgür yapıyı kazandırır. Çözgü ve atkı dengesi sayesinde lif yapısındaki gözenekler cildinizin hava almasını sağlar. Üstelik endüstriyel kumaşların aksine, yıkandıkça sertleşmez; zaman geçtikçe daha da yumuşar ve teninizle barışık, dökümlü halini yıllarca korur.
+      </p>
 
-               </div>
-          </div>
-     </div>
-</section>
+      <p class="reveal" data-delay="240">
+        <strong>dal pure</strong> olarak, bu asırlık mirası günümüzün yalın, rahat ve samimi tarzıyla yeniden yorumluyoruz. Erkek ve kadın için tasarladığımız gömlek, pantolon ve kimonolardan, plaj kültürünü tamamlayan çanta ve peştemallere kadar uzanan bu seçki, güneşin olduğu her an cildinize o eşsiz ferahlığı sunmak için hazırlandı. Yalnızca bir kıyafet değil; yüzyılların dürüst ve temiz hikayesini en sade haliyle günlük hayatınıza taşımak istiyoruz.
+      </p>
+    </article>
+  </main>
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/wow.min.js"></script>
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+  </script>
 
 </body>
 </html>
